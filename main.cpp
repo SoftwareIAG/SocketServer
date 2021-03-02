@@ -18,8 +18,6 @@ void error(const char *message)
 
 
 int main(int argc, char *argv[]) {
-    std::cout << "Hello, World!" << std::endl;
-
     int socketFileDescriptor, newSocketFileDescriptor, portNumber;
     socklen_t clientLen;
     char buffer[256];
@@ -42,6 +40,10 @@ int main(int argc, char *argv[]) {
     serv_addr.sin_family = AF_INET;
     serv_addr.sin_addr.s_addr = INADDR_ANY;
     serv_addr.sin_port = htons(portNumber);
+
+    int enable = 1;
+    if (setsockopt(socketFileDescriptor, SOL_SOCKET, SO_REUSEADDR, &enable, sizeof(int)) < 0)
+        error("setsockopt(SO_REUSEADDR) failed");
 
     if (bind(socketFileDescriptor, (struct sockaddr *) &serv_addr,
             sizeof(serv_addr)) < 0)
