@@ -31,6 +31,10 @@ int main(int argc, char *argv[]) {
         exit(1);
     }
 
+    socketFileDescriptor = socket(AF_INET, SOCK_STREAM, 0);
+    if (socketFileDescriptor < 0)
+        error("Error openning socket");
+
     bzero((char *) &serv_addr, sizeof(serv_addr));
 
     portNumber = atoi(argv[1]);
@@ -56,6 +60,17 @@ int main(int argc, char *argv[]) {
     printf("Server: Got new connection from %s port %d\n",
             inet_ntoa(cli_addr.sin_addr), ntohs(cli_addr.sin_port));
 
+    send(newSocketFileDescriptor, "Hello, world\n", 13, 0);
+
+    bzero(buffer, 256);
+
+    n = read(newSocketFileDescriptor, buffer, 255);
+
+    if (n < 0) error("Error reading data from socket");
+    printf("Here is the message: %s\n", buffer);
+
+    close(newSocketFileDescriptor);
+    close(socketFileDescriptor);
 
 
     return 0;
