@@ -3,4 +3,6 @@ project(SServer)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(SServer main.cpp)
+add_executable(SServer main.cpp Server.cpp Server.h SocketManager.cpp SocketManager.h)
+
+SET(CMAKE_CXX_FLAGS -pthread)
