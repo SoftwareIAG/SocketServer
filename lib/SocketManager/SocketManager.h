@@ -4,7 +4,7 @@
 #include <netinet/in.h>
 #include <iostream>
 #include <strings.h>
-#include "Server.h"
+#include "../Server/Server.h"
 
 class SocketManager {
 public:

@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cstdio>
 #include <cstdlib>
-#include "lib/Server.h"
+#include "lib/Server/Server.h"
 
 /**
  * Main.
