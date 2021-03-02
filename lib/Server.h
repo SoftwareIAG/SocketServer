@@ -1,5 +1,5 @@
-#ifndef SSERVER_SERVER_H
-#define SSERVER_SERVER_H
+#ifndef SOCKET_SERVER_SERVER_H
+#define SOCKET_SERVER_SERVER_H
 
 #pragma once
 
@@ -22,4 +22,4 @@ public:
     void sendMessage(int socket_fd, std::string prompt);
     ~Server() = default;
 };
-#endif //SSERVER_SERVER_H
+#endif //SOCKET_SERVER_SERVER_H
