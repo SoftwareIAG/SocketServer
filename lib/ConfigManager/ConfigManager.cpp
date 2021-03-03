@@ -10,10 +10,8 @@ void ConfigManager::initialize() {
     std::string key;
     std::string value;
     while (file >> key >> value) {
-
         char* char_key = const_cast<char*>(key.c_str());
         char* char_value = const_cast<char*>(value.c_str());
-
         std::cout << key << " " << value << std::endl;
         configTable.insert(char_key, char_value);
     }
