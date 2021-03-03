@@ -4,7 +4,7 @@
 /**
  * Open socket.
  *
- * @return
+ * @return int
  */
 int SocketManager::open_socket() {
     std::cout << "[SocketManager::open_socket] Socket will be opened ... \n";
@@ -20,7 +20,7 @@ int SocketManager::open_socket() {
  *
  * @param socket_fd
  * @param port
- * @return
+ * @return sockaddr_in
  */
 sockaddr_in SocketManager::setup_server_address(int &socket_fd, int port) {
     std::cout << "[SocketManager::setup_server_address] Server Address will be setup ... \n";
@@ -37,6 +37,7 @@ sockaddr_in SocketManager::setup_server_address(int &socket_fd, int port) {
  * Mark socket address as reusable.
  *
  * @param socket_fd
+ * @return void
  */
 void SocketManager::mark_socket_address_as_reusable(int socket_fd) {
     std::cout << "[SocketManager::mark_socket_address_as_reusable] Socket Address will be marked as reusable ... \n";
@@ -51,6 +52,7 @@ void SocketManager::mark_socket_address_as_reusable(int socket_fd) {
  *
  * @param socket_fd
  * @param server_address
+ * @return void
  */
 void SocketManager::bind_socket_address(int socket_fd, sockaddr_in server_address) {
     std::cout << "[SocketManager::bind_socket_address] Socket Address will be bound ... \n";
