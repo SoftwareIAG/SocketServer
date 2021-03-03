@@ -5,6 +5,7 @@
  * Initialize.
  *
  * @param port
+ * @return void
  */
 void Server::initialize(int port)
 {
@@ -20,6 +21,7 @@ void Server::initialize(int port)
  * Start listening.
  *
  * @param socket
+ * @return void
  */
 void Server::start_listening(int socket) {
     while(1) {
@@ -41,6 +43,7 @@ void Server::start_listening(int socket) {
  * Handle connection.
  *
  * @param socket_fd
+ * @return void
  */
 void Server::handle_connection(int socket_fd) {
     char buffer[256];
@@ -56,6 +59,7 @@ void Server::handle_connection(int socket_fd) {
  *
  * @param socket_fd
  * @param prompt
+ * @return void
  */
 void Server::send_message(int socket_fd, std::string prompt) {
     const char* prompt_char = prompt.c_str();
@@ -68,6 +72,7 @@ void Server::send_message(int socket_fd, std::string prompt) {
  *
  * @param socket_fd
  * @param buffer
+ * @return void
  */
 void Server::receive_message(int socket_fd, char buffer[256]) {
     std::cout << buffer;
@@ -78,6 +83,7 @@ void Server::receive_message(int socket_fd, char buffer[256]) {
  * Authenticate.
  *
  * @param socket_fd
+ * @return void
  */
 void Server::authenticate(int socket_fd) {
 

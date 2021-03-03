@@ -3,13 +3,14 @@
 #include <cstdlib>
 #include "lib/Server/Server.h"
 #include "lib/LinkList/LinkList.h"
+#include "lib/HashTable/HashTable.h"
 
 /**
  * Main.
  *
  * @param argc
  * @param argv
- * @return
+ * @return int
  */
 int main(int argc, char *argv[]) {
     std::cout << "======================\n";

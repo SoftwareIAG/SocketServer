@@ -1,34 +1,21 @@
-//
-// Created by zen on 02-03-21.
-//
+#include <iostream>
+#include <unordered_map>
+#include <vector>
+#include "../HashNode/HashNode.h"
 
-#ifndef SOCKETSERVER_HASHTABLE_H
-#define SOCKETSERVER_HASHTABLE_H
-
-typedef struct HashTableItem HashTableItem;
-
-struct HashTableItem {
-    char* key;
-    char* value;
-};
-
-typedef struct HashTableStorage HashTableStorage;
-
-struct HashTableStorage {
-    HashTableItem** items;
-    int size;
-    int count;
-};
-
+#ifndef SOCKET_SERVER_HASH_TABLE_H
+#define SOCKET_SERVER_HASH_TABLE_H
 
 class HashTable {
+private:
+    std::unordered_map<int, HashNode> table;
+    static int hash(char* key);
 public:
-    unsigned long hash(char * string);
-    void insert(HashTableStorage* table, char* key, char* value);
-
-
-
+    HashNode get(char* key);
+    bool exists(char* key);
+    void insert(char* key, char* value);
+    void remove(char* key);
+    void render();
 };
 
-
-#endif //SOCKETSERVER_HASHTABLE_H
+#endif //SOCKET_SERVER_HASH_TABLE_H

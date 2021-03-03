@@ -1,5 +1,5 @@
-#ifndef SOCKET_SERVER_SOCKETMANAGER_H
-#define SOCKET_SERVER_SOCKETMANAGER_H
+#ifndef SOCKET_SERVER_SOCKET_MANAGER_H
+#define SOCKET_SERVER_SOCKET_MANAGER_H
 
 #include <netinet/in.h>
 #include <iostream>
@@ -13,4 +13,5 @@ public:
     void mark_socket_address_as_reusable(int socket_fd);
     void bind_socket_address(int socket_fd, struct sockaddr_in server_address);
 };
-#endif //SOCKET_SERVER_SOCKETMANAGER_H
+
+#endif //SOCKET_SERVER_SOCKET_MANAGER_H

@@ -1,16 +1,22 @@
 #include "LinkList.h"
 
+/**
+ * LinkList constructor.
+ *
+ * @return void
+ */
 LinkList::LinkList() {
     head = NULL;
 }
 
 /**
- * Insert.
+ * Insert value in LinkList.
  *
  * @param val
+ * @return void.
  */
 void LinkList::insert(int val) {
-    Node* current = new Node;
+    LinkNode* current = new LinkNode;
     current->data = val;
     current->next = NULL;
 
@@ -23,16 +29,16 @@ void LinkList::insert(int val) {
 }
 
 /**
- * Search.
+ * Search value in LinkList.
  *
- * @param val
- * @return
+ * @param find
+ * @return bool
  */
-bool LinkList::search(int val) {
-    Node* current = head;
+bool LinkList::search(int find) {
+    LinkNode* current = head;
     while(current != NULL)
     {
-        if (current->data == val)
+        if (current->data == find)
             return true;
         current = current->next;
     }
@@ -40,12 +46,13 @@ bool LinkList::search(int val) {
 }
 
 /**
- * Remove.
+ * Remove value in LinkList.
  *
- * @param val
+ * @param find
+ * @return void
  */
 void LinkList::remove(int find) {
-    Node** current = &head;
+    LinkNode** current = &head;
     while((*current)->data != find && (*current)->next != NULL) {
         current = &(*current)->next;
     }
@@ -54,10 +61,12 @@ void LinkList::remove(int find) {
 }
 
 /**
- * Render.
+ * Render the LinkList.
+ *
+ * @return void
  */
 void LinkList::render() {
-    Node* current = head;
+    LinkNode* current = head;
     while(current != NULL)
     {
         std::cout << current->data << " ";

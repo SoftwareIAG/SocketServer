@@ -1,19 +1,15 @@
-//
-// Created by zen on 02-03-21.
-//
-
 #include <iostream>
 
-#ifndef SOCKETSERVER_LINKLIST_H
-#define SOCKETSERVER_LINKLIST_H
+#ifndef SOCKET_SERVER_LINKLIST_H
+#define SOCKET_SERVER_LINKLIST_H
 
-struct Node {
+struct LinkNode {
     int data;
-    Node *next;
+    LinkNode *next;
 };
 
 class LinkList {
-    Node* head;
+    LinkNode* head;
 public:
     LinkList();
     void insert(int val);
@@ -22,5 +18,4 @@ public:
     void render();
 };
 
-
-#endif //SOCKETSERVER_LINKLIST_H
+#endif //SOCKET_SERVER_LINKLIST_H

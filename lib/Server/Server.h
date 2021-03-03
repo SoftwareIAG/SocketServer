@@ -23,4 +23,5 @@ public:
     static void receive_message(int socket_fd, char buffer[256]);
     ~Server() = default;
 };
+
 #endif //SOCKET_SERVER_SERVER_H
