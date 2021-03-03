@@ -19,7 +19,8 @@ public:
     void initialize(int port);
     void start_listening(int socket);
     void authenticate(int socket_fd);
-    void sendMessage(int socket_fd, std::string prompt);
+    static void send_message(int socket_fd, std::string prompt);
+    static void receive_message(int socket_fd, char buffer[256]);
     ~Server() = default;
 };
 #endif //SOCKET_SERVER_SERVER_H

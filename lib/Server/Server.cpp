@@ -44,12 +44,8 @@ void Server::start_listening(int socket) {
  */
 void Server::handle_connection(int socket_fd) {
     char buffer[256];
-    std::string response = "Ping ... \n";
-    const char* response_char = response.c_str();
     while (recv(socket_fd, buffer, 255, 0) > 0) {
-        std::cout << buffer;
-        send(socket_fd, (void *) response_char, strlen(response_char), MSG_NOSIGNAL);
-        std::cout << response;
+        receive_message(socket_fd, buffer);
         bzero(buffer, 256);
     }
     close(socket_fd);
@@ -61,8 +57,21 @@ void Server::handle_connection(int socket_fd) {
  * @param socket_fd
  * @param prompt
  */
-void Server::sendMessage(int socket_fd, std::string prompt) {
+void Server::send_message(int socket_fd, std::string prompt) {
+    const char* prompt_char = prompt.c_str();
+    send(socket_fd, (void *) prompt_char, strlen(prompt_char), MSG_NOSIGNAL);
+    std::cout << "[Server::send_]" << prompt;
+}
 
+/**
+ * Receive message.
+ *
+ * @param socket_fd
+ * @param buffer
+ */
+void Server::receive_message(int socket_fd, char buffer[256]) {
+    std::cout << buffer;
+    send_message(socket_fd, "Ping ... \n");
 }
 
 /**
