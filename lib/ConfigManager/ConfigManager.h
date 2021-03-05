@@ -7,9 +7,9 @@
 
 class ConfigManager {
 public:
-    HashTable configTable;
+    std::unordered_map<std::string, std::string> values;
     void initialize();
-    char* get(const std::string& key);
+    std::string get(std::string key);
 };
 
 #endif //SOCKET_SERVER_CONFIG_MANAGER_H
