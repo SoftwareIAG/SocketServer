@@ -15,15 +15,15 @@
  * @return int
  */
 int main(int argc, char *argv[]) {
-    std::cout << "=========================\n";
-    std::cout << "= Server is configuring =\n";
-    std::cout << "=========================\n";
+    std::cout << "=========================" << std::endl;
+    std::cout << "= Server is configuring =" << std::endl;
+    std::cout << "=========================" << std::endl;
 
     configManager->initialize();
 
-    std::cout << "======================\n";
-    std::cout << "= Server is starting =\n";
-    std::cout << "======================\n";
+    std::cout << "======================" << std::endl;
+    std::cout << "= Server is starting =" << std::endl;
+    std::cout << "======================" << std::endl;
 
     if (argc < 2) {
         fprintf(stderr, "ERROR, no port provided\n");
