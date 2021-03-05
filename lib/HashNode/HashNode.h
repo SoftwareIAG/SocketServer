@@ -11,5 +11,4 @@ public:
     int hash;
 };
 
-
 #endif //SOCKET_SERVER_HASH_NODE_H

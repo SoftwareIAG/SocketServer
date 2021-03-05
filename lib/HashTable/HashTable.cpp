@@ -25,7 +25,7 @@ void HashTable::insert(char* key, char* value) {
     entry.set_key(key);
     entry.set_value(value);
     entry.set_hash(hashed);
-    this->table[hashed] = entry;
+    table[hashed] = entry;
 }
 
 /**
@@ -63,7 +63,7 @@ void HashTable::render() {
  */
 bool HashTable::exists(char *key) {
     int hashed = hash(key);
-    HashNode entry = this->table[hashed];
+    HashNode entry = table[hashed];
     return entry.key != NULL;
 }
 
@@ -75,5 +75,5 @@ bool HashTable::exists(char *key) {
  */
 HashNode HashTable::get(char *key) {
     int hashed = hash(key);
-    return this->table[hashed];
+    return table[hashed];
 }
