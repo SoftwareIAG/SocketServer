@@ -25,10 +25,6 @@ int main(int argc, char *argv[]) {
     std::cout << "= Server is starting =" << std::endl;
     std::cout << "======================" << std::endl;
 
-    if (argc < 2) {
-        fprintf(stderr, "ERROR, no port provided\n");
-        exit(1);
-    }
     Server server;
-    server.initialize(atoi(configManager->get("PORT")));
+    server.initialize(stoi(configManager->get("PORT")));
 }
