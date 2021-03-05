@@ -5,7 +5,7 @@
  *
  */
 void ConfigManager::initialize() {
-    std::cout << "[ConfigManager::initialize] Config Manager will be initialized ... \n";
+    std::cout << "[ConfigManager::initialize] Config Manager will be initialized ... " << std::endl;
     std::fstream file("config.cfg");
     std::string key;
     std::string value;
@@ -15,7 +15,7 @@ void ConfigManager::initialize() {
         std::cout << key << " " << value << std::endl;
         configTable.insert(char_key, char_value);
     }
-    std::cout << "[ConfigManager::initialize] Config Manager was initialized ... \n";
+    std::cout << "[ConfigManager::initialize] Config Manager was initialized ... " << std::endl;
 }
 
 /**
@@ -25,9 +25,9 @@ void ConfigManager::initialize() {
  * @return
  */
 char* ConfigManager::get(const std::string& key) {
-    std::cout << "[ConfigManager::get] Config Manager will be get value ... \n";
+    std::cout << "[ConfigManager::get] Config Manager will be get value ... " << std::endl;
     char* char_key = const_cast<char*>(key.c_str());
     char* char_value = configTable.get(char_key).value;
-    std::cout << "[ConfigManager::get] Config Manager will be get value ... \n";
+    std::cout << "[ConfigManager::get] Config Manager will be get value ... " << std::endl;
     return char_value;
 }
