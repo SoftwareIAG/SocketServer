@@ -1,7 +1,7 @@
 #/bin/bash
 
-# Run CMake command in root path
+# Run CMake
 cmake .
 
-# Move into CMakeFiles
+# Run Make
 make
