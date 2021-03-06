@@ -7,8 +7,7 @@
 void ConfigManager::initialize() {
     std::cout << "[ConfigManager::initialize] Config will be read ... " << std::endl;
     std::ifstream file("config.cfg");
-    if (!file.good())
-        perror("File 'config.cfg' doesn't not exists in executable path");
+    if (!file.good()) perror("File 'config.cfg' doesn't not exists in executable path");
     std::string key;
     std::string value;
     while (file >> key >> value) {

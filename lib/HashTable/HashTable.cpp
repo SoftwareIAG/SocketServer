@@ -1,31 +1,14 @@
 #include "HashTable.h"
 
 /**
- * Get hash from key.
- *
- * @param key
- * @return int
- */
-int HashTable::hash(char *key) {
-    std::hash<std::string> hasher;
-    auto hashed = hasher(key);
-    return static_cast<int>(hashed);
-}
-
-/**
  * Insert key-value in HashTable.
  *
  * @param key
  * @param value
  * @return void
  */
-void HashTable::insert(char* key, char* value) {
-    int hashed = hash(key);
-    HashNode entry = HashNode();
-    entry.set_key(key);
-    entry.set_value(value);
-    entry.set_hash(hashed);
-    table[hashed] = entry;
+void HashTable::insert(std::string &identifier, std::string &value) {
+    table[identifier] = value;
 }
 
 /**
@@ -34,10 +17,9 @@ void HashTable::insert(char* key, char* value) {
  * @param key
  * @return void
  */
-void HashTable::remove(char *key) {
-    if (exists(key)) {
-        int hashed = hash(key);
-        table.erase(hashed);
+void HashTable::remove(std::string &identifier) {
+    if (exists(identifier)) {
+        table.erase(identifier);
     }
 }
 
@@ -47,11 +29,8 @@ void HashTable::remove(char *key) {
  * @return void
  */
 void HashTable::render() {
-    auto iterator = table.begin();
-    while(++iterator != table.end())
-    {
-        HashNode hashNode = table[iterator->first];
-        std::cout << "Hash: " << iterator->first << " Key: '" << hashNode.key << "' Value: '" << hashNode.value << "'" << std::endl;
+    for (auto& iterator: table) {
+        std::cout << "Key: '" << iterator.first << "', Value: '" << iterator.second << "'" << std::endl;
     }
 }
 
@@ -61,10 +40,13 @@ void HashTable::render() {
  * @param key
  * @return bool
  */
-bool HashTable::exists(char *key) {
-    int hashed = hash(key);
-    HashNode entry = table[hashed];
-    return entry.key != NULL;
+bool HashTable::exists(std::string &identifier) {
+    bool exists = false;
+    for (auto& iterator: table) {
+        if (identifier == iterator.first)
+            exists = true;
+    }
+    return exists;
 }
 
 /**
@@ -73,7 +55,6 @@ bool HashTable::exists(char *key) {
  * @param key
  * @return HashNode
  */
-HashNode HashTable::get(char *key) {
-    int hashed = hash(key);
-    return table[hashed];
+std::string HashTable::get(std::string &identifier) {
+    return table[identifier];
 }
