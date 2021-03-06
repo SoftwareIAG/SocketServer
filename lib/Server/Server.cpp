@@ -7,8 +7,7 @@
  * @param port
  * @return void
  */
-void Server::initialize(int port)
-{
+void Server::initialize(int port) {
     int socket_fd = SocketManager::open_socket();
     struct sockaddr_in server_address = SocketManager::setup_server_address(socket_fd, port);
     SocketManager::mark_socket_address_as_reusable(socket_fd);
