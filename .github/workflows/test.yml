@@ -1,4 +1,4 @@
-name: CMake Build Matrix
+name: CMake Test Matrix
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
    - 'v*'
 jobs:
   build:
-    name: BUILD ${{ matrix.config.name }}
+    name: TEST ${{ matrix.config.name }}
     runs-on: ${{ matrix.config.os }}
     strategy:
       fail-fast: false
@@ -84,6 +84,10 @@ jobs:
           sudo update-alternatives --install /usr/bin/cmake cmake /opt/cmake/bin/cmake 1 --force
           echo cmake version after
           cmake --version
+
+      - name: Run SWAP main and test
+        run: ./swap.sh
+
       - name: Configure
         shell: bash
         run: |
@@ -109,3 +113,6 @@ jobs:
         run: |
           ls -laR
           ${{ matrix.config.archiver }} ../${{ matrix.config.artifact }} .
+
+      - name: Run
+        run: ./SocketServer

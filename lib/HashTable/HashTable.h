@@ -1,20 +1,18 @@
 #include <iostream>
 #include <unordered_map>
 #include <vector>
-#include "../HashNode/HashNode.h"
 
 #ifndef SOCKET_SERVER_HASH_TABLE_H
 #define SOCKET_SERVER_HASH_TABLE_H
 
 class HashTable {
 private:
-    std::unordered_map<int, HashNode> table;
-    static int hash(char* key);
+    std::unordered_map<std::string, std::string> table;
 public:
-    HashNode get(char* key);
-    bool exists(char* key);
-    void insert(char* key, char* value);
-    void remove(char* key);
+    std::string get(std::string &identifier);
+    bool exists(std::string &identifier);
+    void insert(std::string &identifier, std::string &value);
+    void remove(std::string &identifier);
     void render();
 };
 
