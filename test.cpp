@@ -6,7 +6,7 @@
 #include "lib/HashTable/HashTable.h"
 #include "lib/SocketManager/SocketManager.h"
 #include "lib/ConfigManager/ConfigManager.h"
-#include "lib/Server/Server.h"
+#include "app/Server/Server.h"
 
 /**
  * Test.

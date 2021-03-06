@@ -1,5 +1,5 @@
 #include "Server.h"
-#include "../SocketManager/SocketManager.h"
+#include "../../lib/SocketManager/SocketManager.h"
 
 /**
  * Initialize.
