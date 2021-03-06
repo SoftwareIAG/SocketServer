@@ -8,3 +8,5 @@ mv test.cpp main.cpp
 
 # Move tmp to test
 mv tmp.cpp test.cpp
+
+echo "Runnable swapped successfully."
