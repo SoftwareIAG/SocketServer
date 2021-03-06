@@ -1,8 +1,6 @@
 #include <iostream>
-#include <cstdio>
-#include <cstdlib>
 #include "main.h"
-#include "lib/Server/Server.h"
+#include "app/Server/Server.h"
 #include "lib/LinkList/LinkList.h"
 #include "lib/HashTable/HashTable.h"
 #include "lib/ConfigManager/ConfigManager.h"

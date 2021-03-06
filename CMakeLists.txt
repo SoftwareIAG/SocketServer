@@ -5,8 +5,8 @@ set(CMAKE_CXX_STANDARD 20)
 
 add_executable(SocketServer
         main.cpp
-        lib/Server/Server.cpp
-        lib/Server/Server.h
+        app/Server/Server.cpp
+        app/Server/Server.h
         lib/SocketManager/SocketManager.cpp
         lib/SocketManager/SocketManager.h
         lib/ConfigManager/ConfigManager.cpp
