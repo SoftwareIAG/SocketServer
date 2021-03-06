@@ -10,11 +10,13 @@
 #include <cstring>
 #include <thread>
 #include <map>
+#include <unordered_map>
 
 class Server {
 private:
     virtual void handle_connection(int socket_fd);
 public:
+    std::unordered_map<int, sockaddr_in> clientList;
     Server() = default;
     void initialize(int port);
     void start_listening(int socket);
