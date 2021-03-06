@@ -7,7 +7,6 @@
 
 class ConfigManager {
 public:
-    HashTable *hashTable = new HashTable();
     std::unordered_map<std::string, std::string> values;
     void initialize();
     std::string get(std::string key);
