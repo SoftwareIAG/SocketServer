@@ -52,6 +52,8 @@ jobs:
       - name: Install dependencies on ubuntu9
         if: startsWith(matrix.config.name, 'Ubuntu_GCC_9')
         run: |
+          echo Install MySQL connector ============================================================
+          sudo apt-get install libmysqlcppconn-dev
           echo Update gcc-9 =======================================================================
           echo gcc version before
           gcc --version
