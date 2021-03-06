@@ -1,7 +1,6 @@
 #include <iostream>
 #include <unordered_map>
 #include <vector>
-#include "../HashNode/HashNode.h"
 
 #ifndef SOCKET_SERVER_HASH_TABLE_H
 #define SOCKET_SERVER_HASH_TABLE_H

@@ -67,6 +67,7 @@ void LinkList::remove(int find) {
  */
 void LinkList::render() {
     LinkNode* current = head;
+    std::cout << "Values: ";
     while(current != NULL)
     {
         std::cout << current->data << " ";
