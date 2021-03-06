@@ -66,7 +66,7 @@ void Server::send_message(int socket_fd, const std::string& prompt) {
     const char *prompt_char;
     prompt_char = prompt.c_str();
     send(socket_fd, (void *) prompt_char, strlen(prompt_char), MSG_NOSIGNAL);
-    std::cout << "[Server::send_]" << prompt;
+    std::cout << "[Server::send]" << prompt;
 }
 
 /**
