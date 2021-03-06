@@ -15,6 +15,8 @@ void Server::initialize(int port) {
     start_listening(socket_fd);
 }
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wmissing-noreturn"
 /**
  * Start listening.
  *
@@ -28,14 +30,14 @@ void Server::start_listening(int socket) {
         socklen_t client_len = sizeof(client_address);
         listen(socket, 5);
         new_socket_fd = accept(socket, (struct sockaddr *) &client_address, &client_len);
-        if (new_socket_fd < 0)
-            perror("Error: failed to connect to incoming connection ... \n");
-        printf("Server: Got new connection from %s port %d\n",
-               inet_ntoa(client_address.sin_addr), ntohs(client_address.sin_port));
+        if (new_socket_fd < 0) perror("Error: failed to connect to incoming connection ... \n");
+        clientList[new_socket_fd] = client_address;
+        printf("Server: Got new connection from %s port %d\n", inet_ntoa(client_address.sin_addr), ntohs(client_address.sin_port));
         std::thread child_thread (&Server::handle_connection, this, new_socket_fd);
         child_thread.detach();
     }
 }
+#pragma clang diagnostic pop
 
 /**
  * Handle connection.
@@ -50,6 +52,7 @@ void Server::handle_connection(int socket_fd) {
         bzero(buffer, 256);
     }
     close(socket_fd);
+    clientList.erase(socket_fd);
 }
 
 /**
