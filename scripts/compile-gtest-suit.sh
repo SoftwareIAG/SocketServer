@@ -1,6 +1,8 @@
 #bin/bash
 
-cd /usr/src/gtest || exit
+cd /usr/src/googletest/googletest || exit 1
 sudo cmake CMakeLists.txt
 sudo cmake
-sudo cp lib/*.a /usr/lib
+
+cd /usr/src/googletest/googletest/lib || exit 1
+sudo cp *.a /usr/lib
