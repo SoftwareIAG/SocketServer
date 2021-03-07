@@ -33,5 +33,19 @@ add_executable(RunTests
         lib/LinkList/LinkList.h main.h
 )
 
+add_executable(ExecuteCommand
+        run-command.cpp
+        app/Server/Server.cpp
+        app/Server/Server.h
+        lib/SocketManager/SocketManager.cpp
+        lib/SocketManager/SocketManager.h
+        lib/ConfigManager/ConfigManager.cpp
+        lib/ConfigManager/ConfigManager.h
+        lib/HashTable/HashTable.cpp
+        lib/HashTable/HashTable.h
+        lib/LinkList/LinkList.cpp
+        lib/LinkList/LinkList.h main.h
+        app/RunCommand/RunCommand.cpp app/RunCommand/RunCommand.h)
+
 target_link_libraries(RunTests ${GTEST_LIBRARIES} pthread)
 SET(CMAKE_CXX_FLAGS "-pthread --coverage")
