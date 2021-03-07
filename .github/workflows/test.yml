@@ -46,8 +46,8 @@ jobs:
       - name: Install dependencies on ubuntu9
         if: startsWith(matrix.config.name, 'Ubuntu_GCC_9')
         run: ./scripts/install-dependencies-on-ubuntu-gcc-9.sh
-      - name: Run SWAP main and test
-        run: ./swap.sh
+      - name: Compile GTest Suit
+        run: ./scripts/compile-gtest-suit.sh
       - name: Configure
         shell: bash
         run: |
@@ -72,4 +72,4 @@ jobs:
           ls -laR
           ${{ matrix.config.archiver }} ../${{ matrix.config.artifact }} .
       - name: Run
-        run: ./SocketServer
+        run: ./RunTests
