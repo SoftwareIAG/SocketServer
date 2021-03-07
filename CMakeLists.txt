@@ -47,5 +47,6 @@ add_executable(ExecuteCommand
         lib/LinkList/LinkList.h main.h
         app/RunCommand/RunCommand.cpp app/RunCommand/RunCommand.h)
 
+target_link_libraries(ExecuteCommand mysqlcppconn)
 target_link_libraries(RunTests ${GTEST_LIBRARIES} pthread)
 SET(CMAKE_CXX_FLAGS "-pthread --coverage")

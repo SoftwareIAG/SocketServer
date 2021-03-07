@@ -3,6 +3,8 @@
 #include "RunCommand.h"
 #include "mysql_driver.h"
 #include "mysql_connection.h"
+#include "cppconn/driver.h"
+#include "cppconn/exception.h"
 #include "cppconn/statement.h"
 #include "../../main.h"
 
@@ -17,17 +19,18 @@ void RunCommand::initialize(int argc, char *argv[]) {
                 sql::Driver *driver;
                 sql::Connection *con;
                 sql::Statement *stmt;
-                sql::ResultSet *res;
-
+                std::string CREATE_TABLES_QUERY = "CREATE TABLE IF NOT EXISTS sockets(id BIGINT AUTO_INCREMENT PRIMARY KEY, ip VARCHAR(15) NOT NULL, port INT NOT NULL, connected BOOLEAN DEFAULT true NOT NULL, connected_at TIMESTAMP DEFAULT now() NOT NULL, disconnected_at TIMESTAMP null) ENGINE=INNODB;";
                 driver = get_driver_instance();
                 con = driver->connect(configManager->get("DB_URL"), configManager->get("DB_USERNAME"), configManager->get("DB_PASSWORD"));
                 con->setSchema(configManager->get("DB_NAME"));
                 stmt = con->createStatement();
-                stmt->executeQuery("");
-
-
+                stmt->execute(CREATE_TABLES_QUERY);
             } catch (sql::SQLException &e) {
-
+                std::cout << "# ERR: SQLException in " << __FILE__;
+                std::cout << "(" << __FUNCTION__ << ") on line " << __LINE__ << std::endl;
+                std::cout << "# ERR: " << e.what();
+                std::cout << " (MySQL error code: " << e.getErrorCode();
+                std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
             }
         }
     }
