@@ -20,8 +20,8 @@ void RunCommand::initialize(int argc, char *argv[]) {
                 sql::ResultSet *res;
 
                 driver = get_driver_instance();
-                con = driver->connect("tcp://127.0.0.1:3306", "root", "root");
-                con->setSchema("test");
+                con = driver->connect(configManager->get("DB_URL"), configManager->get("DB_USERNAME"), configManager->get("DB_PASSWORD"));
+                con->setSchema(configManager->get("DB_NAME"));
                 stmt = con->createStatement();
                 stmt->executeQuery("");
 
