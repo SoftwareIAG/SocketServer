@@ -71,5 +71,7 @@ jobs:
         run: |
           ls -laR
           ${{ matrix.config.archiver }} ../${{ matrix.config.artifact }} .
+      - name: Copy config
+        run: cp config.cfg.example config.cfg
       - name: Run
         run: ./RunTests
