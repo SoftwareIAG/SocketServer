@@ -5,4 +5,4 @@ sudo cmake CMakeLists.txt
 sudo cmake
 
 cd /usr/src/googletest/googletest/lib || exit 1
-sudo cp *.a /usr/lib
+sudo cp libgtest.a libgtest_main.a /usr/lib
