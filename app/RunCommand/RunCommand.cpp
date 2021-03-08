@@ -11,15 +11,14 @@
 void RunCommand::initialize(int argc, char *argv[]) {
     configManager->initialize();
 
-    if (argc == 1) {
-        perror("RunCommand executed with no parameter");
-    } else if (argc == 2) {
+    if (argc == 1) { perror("RunCommand executed with no parameter"); }
+    else if (argc == 2) {
         if (strcmp(argv[1], "migrate") == 0) {
             try {
                 sql::Driver *driver;
                 sql::Connection *con;
                 sql::Statement *stmt;
-                std::string CREATE_TABLES_QUERY = "CREATE TABLE IF NOT EXISTS sockets(id BIGINT AUTO_INCREMENT PRIMARY KEY, ip VARCHAR(15) NOT NULL, port INT NOT NULL, connected BOOLEAN DEFAULT true NOT NULL, connected_at TIMESTAMP DEFAULT now() NOT NULL, disconnected_at TIMESTAMP null) ENGINE=INNODB;";
+                std::string CREATE_TABLES_QUERY = "CREATE TABLE IF NOT EXISTS sockets(id BIGINT AUTO_INCREMENT PRIMARY KEY, uuid VARCHAR(36) NOT NULL, ip VARCHAR(15) NOT NULL, port INT NOT NULL, connected BOOLEAN DEFAULT true NOT NULL, connected_at TIMESTAMP DEFAULT now() NOT NULL, disconnected_at TIMESTAMP null) ENGINE=INNODB;";
                 driver = get_driver_instance();
                 con = driver->connect(configManager->get("DB_URL"), configManager->get("DB_USERNAME"), configManager->get("DB_PASSWORD"));
                 con->setSchema(configManager->get("DB_NAME"));

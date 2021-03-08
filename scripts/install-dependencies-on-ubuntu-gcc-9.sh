@@ -1,7 +1,7 @@
 #bin/sh
 echo Install MySQL connector ============================================================
 
-sudo apt-get install libmysqlcppconn-dev libgtest-dev
+sudo apt-get install libmysqlcppconn-dev libgtest-dev uuid-dev
 
 echo Update gcc-9 =======================================================================
 
