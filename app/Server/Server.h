@@ -14,7 +14,7 @@
 
 class Server {
 private:
-    virtual void handle_connection(int socket_fd);
+    virtual void handle_connection(int socket_fd, sockaddr_in client_address, char* uuid);
 public:
     std::unordered_map<int, sockaddr_in> clientList;
     Server() = default;

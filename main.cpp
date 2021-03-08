@@ -4,8 +4,7 @@
 #include "lib/LinkList/LinkList.h"
 #include "lib/HashTable/HashTable.h"
 #include "lib/ConfigManager/ConfigManager.h"
-#include "mysql_driver.h"
-#include "mysql_connection.h"
+#include <uuid/uuid.h>
 
 /**
  * Main.
