@@ -20,7 +20,7 @@ public:
     Server() = default;
     void initialize(int port);
     void start_listening(int socket);
-    void authenticate(int socket_fd);
+    static void authenticate(int socket_fd, std::string token);
     static void send_message(int socket_fd, const std::string& prompt);
     static void receive_message(int socket_fd, char buffer[256]);
     ~Server() = default;

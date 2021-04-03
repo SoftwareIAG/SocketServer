@@ -62,6 +62,7 @@ void Server::start_listening(int socket) {
         printf("Server: Got new connection from %s port %d\n", inet_ntoa(client_address.sin_addr), ntohs(client_address.sin_port));
         std::thread child_thread (&Server::handle_connection, this, new_socket_fd, client_address, uuid);
         child_thread.detach();
+
     }
 }
 #pragma clang diagnostic pop
@@ -74,6 +75,7 @@ void Server::start_listening(int socket) {
  */
 void Server::handle_connection(int socket_fd, sockaddr_in client_address, char* uuid) {
     char buffer[256];
+    bzero(buffer, 256);
     while (recv(socket_fd, buffer, 255, 0) > 0) {
         receive_message(socket_fd, buffer);
         bzero(buffer, 256);
@@ -92,6 +94,7 @@ void Server::handle_connection(int socket_fd, sockaddr_in client_address, char* 
     pstmt->executeUpdate();
     delete pstmt;
     delete con;
+    printf("Server: Got new disconnection from %s port %d\n", inet_ntoa(client_address.sin_addr), ntohs(client_address.sin_port));
 }
 
 /**
@@ -105,7 +108,6 @@ void Server::send_message(int socket_fd, const std::string& prompt) {
     const char *prompt_char;
     prompt_char = prompt.c_str();
     send(socket_fd, (void *) prompt_char, strlen(prompt_char), MSG_NOSIGNAL);
-    std::cout << "[Server::send]" << prompt;
 }
 
 /**
@@ -115,8 +117,14 @@ void Server::send_message(int socket_fd, const std::string& prompt) {
  * @param buffer
  * @return void
  */
-void Server::receive_message(int socket_fd, char buffer[256]) {
-    send_message(socket_fd, "Ping ... \n");
+void Server::receive_message(int socket_fd, char buffer[]) {
+    std::string message = std::string(buffer);
+    std::string auth_message = "AUTHENTICATION=";
+    if (message.find(auth_message) != std::string::npos) {
+        authenticate(socket_fd, message);
+    } else {
+        send_message(socket_fd, "ACK.");
+    }
 }
 
 /**
@@ -125,6 +133,28 @@ void Server::receive_message(int socket_fd, char buffer[256]) {
  * @param socket_fd
  * @return void
  */
-void Server::authenticate(int socket_fd) {
-
+void Server::authenticate(int socket_fd, std::string token) {
+    sql::Driver *driver;
+    sql::Connection *con;
+    sql::PreparedStatement *pstmt;
+    sql::ResultSet *resultSet;
+    token.erase(0, 15);
+    driver = get_driver_instance();
+    con = driver->connect(configManager->get("DB_URL"), configManager->get("DB_USERNAME"), configManager->get("DB_PASSWORD"));
+    con->setSchema(configManager->get("DB_NAME"));
+    std::string CHECK_TOKEN_EXISTS = "SELECT * FROM tokens WHERE value = '" + token + "'";
+    pstmt = con->prepareStatement(CHECK_TOKEN_EXISTS);
+    resultSet = pstmt->executeQuery();
+    if (resultSet->next()) {
+        if (resultSet->getString("enabled") == "1") {
+            send_message(socket_fd, "Authenticated.");
+        } else {
+            send_message(socket_fd, "Unauthenticated: Token must be enabled.");
+        }
+    } else {
+        send_message(socket_fd, "Unauthenticated: Token must be exists.");
+        close(socket_fd);
+    }
+    delete pstmt;
+    delete con;
 }
