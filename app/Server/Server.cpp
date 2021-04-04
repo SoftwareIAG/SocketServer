@@ -155,6 +155,7 @@ void Server::authenticate(int socket_fd, std::string token) {
         send_message(socket_fd, "Unauthenticated: Token must be exists.");
         close(socket_fd);
     }
+    delete resultSet;
     delete pstmt;
     delete con;
 }
